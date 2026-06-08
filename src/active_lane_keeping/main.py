@@ -147,7 +147,7 @@ def get_logger(run_id:str, path:str, debug:bool=False) -> logging.Logger:
     return logger
 
 
-def twiddle(run_id:str, path:str, config: dict, tolerance:float=0.2, 
+def twiddle(run_id:str, path:str, config: dict, tolerance:float=0.2,
             controller:str='pid', steps:int=1000, debug:bool=False) -> None:
     """Twiddle-Algorithm
 
@@ -238,7 +238,7 @@ def twiddle(run_id:str, path:str, config: dict, tolerance:float=0.2,
         f'error: {best_err:.5f}'))
 
 
-def no_adapt(run_id:str, path:str, config: dict, steps:int=1000, 
+def no_adapt(run_id:str, path:str, config: dict, steps:int=1000,
              controller:str=None) -> None:
     """Run without adaption
 
@@ -257,16 +257,15 @@ def no_adapt(run_id:str, path:str, config: dict, steps:int=1000,
     world = None
     try:
         world = World.from_config(config)
-        
-        # Use provided controller or default from config
+
         ctrl = config.get('controller', {})
         ctrl_name = controller if controller else ctrl.get('default_controller', 'pid')
-        
+
         agent = Agent.from_config(config)
         if controller:
             agent.controller_name = controller
             agent._select_controller_method(controller)
-        
+
         save = config.get('run', {}).get('save_video', True)
         run(run_id=run_id, path=path, world=world, agent=agent, steps=steps, save=save)
     finally:
@@ -295,7 +294,7 @@ def make_path(folder:str, run_id:str) -> str:
         os.makedirs(path)
     else:
         warnings.warn('Path already exists. Files may be overwritten.')
-    
+
     return path
 
 
@@ -319,23 +318,20 @@ if __name__ == '__main__':
     parser.add_argument('-d', '--debug', action='store_true',
         help=('Whether to use debug mode for logging. This takes effect only '
         'if adapt is set to true.'), dest='debug')
-    parser.add_argument('-cfg', '--config', default='../config.yaml', type=str,
-        help=('Path to the configuration file. Defaults to \'../config.yaml\'.'), 
+    parser.add_argument('-cfg', '--config', default='config.yaml', type=str,
+        help=('Path to the configuration file. Defaults to \'config.yaml\'.'),
         dest='config')
     args = parser.parse_args()
 
-    # Load configuration
     config = load_config(args.config)
 
-    # Get steps from command line or config
     run_steps = args.steps if args.steps else config.get('run', {}).get('default_steps', 1000)
 
-    # Make output path
     path = make_path(folder='assets', run_id=args.id)
 
     if args.adapt:
         twiddle(run_id=args.id, path=path, config=config, tolerance=args.tolerance,
-            controller=args.controller if args.controller else 'pid', 
+            controller=args.controller if args.controller else 'pid',
             steps=run_steps, debug=args.debug)
     else:
         no_adapt(run_id=args.id, path=path, config=config, steps=run_steps,
