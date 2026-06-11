@@ -356,18 +356,3 @@ Active-Lane-Keeping-Assistant/
 - 使用 type hints
 - 添加必要的 docstring
 
----
-
-## 许可证
-
-MIT License
-
----
-
-*本项目由 [@Irish-77](https://github.com/Irish-77) 和 [@Ronho](https://github.com/Ronho) 合作完成*
-
----
-
-<div align="center">
-  <sub>Made with ❤️ for autonomous driving research</sub>
-</div>
