@@ -96,9 +96,9 @@ python src/main.py -id "gpu_run" -c pid --gpu -s 1000
 
 系统在 CARLA 模拟器中实现了实时车道检测和自动控制。车辆能够根据检测到的车道线自动保持在车道中心行驶，左上角实时显示距离车道中心的偏差（单位：厘米）。
 
-![车道检测效果1](docs/demo1.png)
+![车道检测效果1](images/demo1.png)
 
-![车道检测效果2](docs/demo2.png)
+![车道检测效果2](images/demo2.png)
 
 ---
 
