@@ -1,11 +1,4 @@
-# Active Lane Keeping Assistant
-
-<div align="center">
-  <img src="docs/lane_overlay.jpg" alt="Lane Detection Demo" width="640" />
-  <p><em>基于计算机视觉的主动车道保持系统</em></p>
-</div>
-
----
+# 自动驾驶车道保持系统
 
 ## 目录
 
