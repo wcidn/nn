@@ -8,6 +8,7 @@
   - [环境要求](#环境要求)
   - [安装步骤](#安装步骤)
   - [运行方式](#运行方式)
+- [运行效果](#运行效果)
 - [核心技术](#核心技术)
   - [车道线检测](#车道线检测)
   - [控制器算法](#控制器算法)
@@ -17,8 +18,6 @@
 - [数据输出](#数据输出)
 - [性能优化](#性能优化)
 - [参考资料](#参考资料)
-- [贡献指南](#贡献指南)
-- [许可证](#许可证)
 
 ---
 
@@ -90,6 +89,16 @@ python src/main.py -id "mpc_demo" -c mpc -s 1000
 # 4. 启用 GPU 加速
 python src/main.py -id "gpu_run" -c pid --gpu -s 1000
 ```
+
+---
+
+## 运行效果
+
+系统在 CARLA 模拟器中实现了实时车道检测和自动控制。车辆能够根据检测到的车道线自动保持在车道中心行驶，左上角实时显示距离车道中心的偏差（单位：厘米）。
+
+![车道检测效果1](docs/demo1.png)
+
+![车道检测效果2](docs/demo2.png)
 
 ---
 
@@ -327,25 +336,4 @@ Active-Lane-Keeping-Assistant/
 - [CARLA Simulator Documentation](https://carla.readthedocs.io/)
 - [Model Predictive Control for Autonomous Vehicles](https://arxiv.org/abs/1708.02596)
 - [PID Controller Explained](https://controltheorypro.com/pid-controller/)
-
----
-
-## 贡献指南
-
-欢迎提交 Issue 和 Pull Request！
-
-### 开发流程
-
-1. Fork 项目
-2. 创建特性分支：`git checkout -b feature/xxx`
-3. 提交修改：`git commit -m 'Add xxx'`
-4. 推送分支：`git push origin feature/xxx`
-5. 创建 Pull Request
-
-### 代码规范
-
-- 使用 Python 3.10+ 语法
-- 遵循 PEP 8 编码规范
-- 使用 type hints
-- 添加必要的 docstring
 
